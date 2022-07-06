@@ -1,18 +1,27 @@
 <?php
-  $posts = [
-    [
-      "title" => "タイトル1",
-      "category" => "カテゴリー1",
-      "description" => "詳細その1",
-      "image" => "images/image1.jpg",
-    ],
-    [
-      "title" => "タイトル2",
-      "category" => "カテゴリー2",
-      "description" => "詳細その2",
-      "image" => "images/image2.jpg",
-    ]
-  ];
+const DB_HOST = 'mysql:dbname=udemy_aws;host=127.0.0.1;charset=utf8';
+const DB_USER = 'aws_user';
+const DB_PASSWORD = 'password123';
+
+try{
+  $pdo = new PDO(DB_HOST, DB_USER, DB_PASSWORD, [
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, //連想配列
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, //例外
+    PDO::ATTR_EMULATE_PREPARES => false, //SQLインジェクション対策
+  ]);
+
+  if($pdo == null){
+    echo '接続に失敗';
+  } else {
+    $stmt = $pdo->prepare("select * from posts");
+    $stmt->execute();
+    $posts = $stmt->fetchAll();
+  }
+} catch(PDOException $e){
+  echo '接続失敗' . $e->getMessage() . "\n";
+  exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
