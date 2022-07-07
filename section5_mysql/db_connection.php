@@ -2,7 +2,7 @@
 
 const DB_HOST = 'mysql:dbname=udemy_aws_blog;host=127.0.0.1;charset=utf8';
 const DB_USER = 'root';
-const DB_PASSWORD = 'udemy-aws-basic-123@';
+const DB_PASSWORD = 'Udemy-aws-basic-123@';
 
 try{
   $pdo = new PDO(DB_HOST, DB_USER, DB_PASSWORD, [
