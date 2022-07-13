@@ -1,19 +1,22 @@
 <?php
-ini_set('display_errors', "On");
-ini_set('error_reporting', E_ALL);
 require './vendor/autoload.php';
+
 use Aws\S3\S3Client;
+use Aws\S3\Exception\S3Exception;
 
 // S3インスタンス作成時の引数
-$config = [
-    'version' => 'latest',
-    'region'  => 'ap-northeast-1',
-];
-
-$s3Client = new S3Client($config);
+$s3 = new S3Client([
+    'region'  => 'ap-eastnorth-1',
+    'version' => 'latest'
+]);
 
 # バケット一覧の表示
-$result = $s3Client->listBuckets();
-foreach ($result['Buckets'] as $bucket) {
-    echo $bucket['Name'] . "\n";
+try {
+    $result = $s3->listObjects();
+
+    foreach ($result['Buckets'] as $bucket) {
+        echo $bucket['Name'] . "\n";
+    }
+} catch (S3Exception $e) {
+    echo $e->getMessage() . "\n";
 }
