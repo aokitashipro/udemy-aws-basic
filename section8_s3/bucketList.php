@@ -6,7 +6,7 @@ use Aws\S3\Exception\S3Exception;
 
 // S3インスタンス作成時の引数
 $s3 = new S3Client([
-    'region'  => 'ap-eastnorth-1',
+    'region'  => 'ap-northeast-1',
     'version' => 'latest'
 ]);
 
