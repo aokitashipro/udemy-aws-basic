@@ -15,7 +15,7 @@ $config = [
 ];
 
 // AccessKeyとSecretAccressKeyがない場合は、IAMロールを使用する
-if (empty($awsAccessKeyId) && empty($awsSecretAccessKey)) {
+if (empty($accessKeyId) && empty($secretAccessKey)) {
     // IAMロール認証の場合はprofileをセットしない(unsetする)
     unset($config['profile']);
   }
