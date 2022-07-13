@@ -7,13 +7,13 @@ use Aws\S3\Exception\S3Exception;
 // S3インスタンス作成時の引数
 $s3 = new S3Client([
     'region'  => 'ap-northeast-1',
-    'version' => 'latest'
+    'version' => 'latest',
+    'profile' => 'default'
 ]);
 
 # バケット一覧の表示
 try {
-    $result = $s3->listObjects();
-
+    $result = $s3->listBuckets();
     foreach ($result['Buckets'] as $bucket) {
         echo $bucket['Name'] . "\n";
     }
