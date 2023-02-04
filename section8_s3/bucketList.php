@@ -8,7 +8,6 @@ use Aws\S3\Exception\S3Exception;
 $s3 = new S3Client([
     'region'  => 'ap-northeast-1',
     'version' => 'latest',
-    'profile' => 'default'
 ]);
 
 # バケット一覧の表示
